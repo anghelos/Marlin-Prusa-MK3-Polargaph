@@ -76,6 +76,10 @@
 
 #endif
 
+// Polargraph servo pin
+#ifndef SERVO0_PIN
+  #define SERVO0_PIN                           10
+#endif
 //
 // Z Probe (when not Z_MIN_PIN)
 //
