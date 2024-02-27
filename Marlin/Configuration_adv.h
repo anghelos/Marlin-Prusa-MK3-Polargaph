@@ -1408,7 +1408,7 @@
 //#define MICROSTEP32 HIGH,LOW,HIGH
 
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
-#define MICROSTEP_MODES { 16, 16, 16 } // [1,2,4,8,16]
+#define MICROSTEP_MODES { 16, 16 } // [1,2,4,8,16]
 
 /**
  *  @section  stepper motor current
@@ -3427,7 +3427,7 @@
     //#define V_STALL_SENSITIVITY  8
     //#define W_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130/TMC5160 only
-    #define IMPROVE_HOMING_RELIABILITY
+    // #define IMPROVE_HOMING_RELIABILITY
   #endif
 
   // @section tmc/config
