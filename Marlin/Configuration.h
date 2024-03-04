@@ -291,6 +291,90 @@
 
 #endif
 
+/*------------------------------------
+ TMC2130 default settings (ADDED from Prusa MK3)
+ *------------------------------------*/
+
+#define TMC2130_FCLK 12000000       // fclk = 12MHz
+
+#define TMC2130_USTEPS_XY   16        // microstep resolution for XY axes
+#define TMC2130_USTEPS_Z    16        // microstep resolution for Z axis
+#define TMC2130_USTEPS_E    32        // microstep resolution for E axis
+#define TMC2130_INTPOL_XY   1         // extrapolate 256 for XY axes
+#define TMC2130_INTPOL_Z    1         // extrapolate 256 for Z axis
+#define TMC2130_INTPOL_E    1         // extrapolate 256 for E axis
+// #define ALLOW_ALL_MRES
+
+#define TMC2130_PWM_GRAD_X  2         // PWMCONF
+#define TMC2130_PWM_AMPL_X  230       // PWMCONF
+#define TMC2130_PWM_AUTO_X  1         // PWMCONF
+#define TMC2130_PWM_FREQ_X  2         // PWMCONF
+
+#define TMC2130_PWM_GRAD_Y  2         // PWMCONF
+#define TMC2130_PWM_AMPL_Y  235       // PWMCONF
+#define TMC2130_PWM_AUTO_Y  1         // PWMCONF
+#define TMC2130_PWM_FREQ_Y  2         // PWMCONF
+
+#define TMC2130_PWM_GRAD_Z  4         // PWMCONF
+#define TMC2130_PWM_AMPL_Z  200       // PWMCONF
+#define TMC2130_PWM_AUTO_Z  1         // PWMCONF
+#define TMC2130_PWM_FREQ_Z  2         // PWMCONF
+
+#define TMC2130_PWM_GRAD_E  4         // PWMCONF
+#define TMC2130_PWM_AMPL_E  240       // PWMCONF
+#define TMC2130_PWM_AUTO_E  1         // PWMCONF
+#define TMC2130_PWM_FREQ_E  2         // PWMCONF
+
+// experimental setting for E-motor cooler operation
+#define TMC2130_PWM_GRAD_Ecool  84        // PWMCONF 730mA @ 375mm/min  970mA phase peak at feedrate 900mm/min
+#define TMC2130_PWM_AMPL_Ecool  43        // PWMCONF 500mA phase peak at feedrate 10 mm/min
+#define TMC2130_PWM_AUTO_Ecool  0         // PWMCONF
+
+#define TMC2130_TOFF_XYZ    3         // CHOPCONF // fchop = 27.778kHz
+#define TMC2130_TOFF_E      3         // CHOPCONF // fchop = 27.778kHz
+//#define TMC2130_TOFF_E      4         // CHOPCONF // fchop = 21.429kHz
+//#define TMC2130_TOFF_E      5         // CHOPCONF // fchop = 17.442kHz
+
+//#define TMC2130_STEALTH_E // Extruder stealthChop mode
+//#define TMC2130_CNSTOFF_E // Extruder constant-off-time mode (similar to MK2)
+
+//#define TMC2130_PWM_DIV   683         // PWM frequency divider (1024, 683, 512, 410)
+#define TMC2130_PWM_DIV   512         // PWM frequency divider (1024, 683, 512, 410)
+#define TMC2130_PWM_CLK   (2 * TMC2130_FCLK / TMC2130_PWM_DIV) // PWM frequency (23.4kHz, 35.1kHz, 46.9kHz, 58.5kHz for 12MHz fclk)
+
+#define TMC2130_TPWMTHRS  0         // TPWMTHRS - Sets the switching speed threshold based on TSTEP from stealthChop to spreadCycle mode
+#define TMC2130_TPWMTHRS_E 403      // Switch extruder from StealthChop to SpreadCycle at around 900mm/min
+#define TMC2130_THIGH     0         // THIGH - unused
+
+//#define TMC2130_TCOOLTHRS_X 450       // TCOOLTHRS - coolstep treshold
+//#define TMC2130_TCOOLTHRS_Y 450       // TCOOLTHRS - coolstep treshold
+#define TMC2130_TCOOLTHRS_X 430       // TCOOLTHRS - coolstep treshold
+#define TMC2130_TCOOLTHRS_Y 430       // TCOOLTHRS - coolstep treshold
+#define TMC2130_TCOOLTHRS_Z 500       // TCOOLTHRS - coolstep treshold
+#define TMC2130_TCOOLTHRS_E 500       // TCOOLTHRS - coolstep treshold
+
+#define TMC2130_SG_HOMING       1     // stallguard homing
+#define TMC2130_SG_THRS_X       3     // stallguard sensitivity for X axis
+#define TMC2130_SG_THRS_Y       3     // stallguard sensitivity for Y axis
+#define TMC2130_SG_THRS_Z       4     // stallguard sensitivity for Z axis
+#define TMC2130_SG_THRS_E       3     // stallguard sensitivity for E axis
+#define TMC2130_SG_THRS_HOME {3, 3, TMC2130_SG_THRS_Z, TMC2130_SG_THRS_E}
+
+//new settings is possible for vsense = 1, running current value > 31 set vsense to zero and shift both currents by 1 bit right (Z axis only)
+#define TMC2130_CURRENTS_H {16, 20, 35, 30}  // default holding currents for all axes
+#define TMC2130_CURRENTS_FARM 36             // E 805 mA peak for ECool/farm mode
+#define TMC2130_CURRENTS_R {16, 20, 35, 30}  // default running currents for all axes
+#define TMC2130_CURRENTS_R_HOME {8, 10, 20, 18}  // homing running currents for all axes
+
+#define TMC2130_STEALTH_Z
+#define TMC2130_DEDGE_STEPPING
+
+//#define TMC2130_SERVICE_CODES_M910_M918
+
+//#define TMC2130_DEBUG
+//#define TMC2130_DEBUG_WR
+//#define TMC2130_DEBUG_RD
+
 /**
  * Switching Toolhead
  *
@@ -1227,19 +1311,19 @@
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 100 }
 
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
  */
-#define EDITABLE_STEPS_PER_UNIT
+// #define EDITABLE_STEPS_PER_UNIT
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 300 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 200 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1252,7 +1336,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 3000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500, 2500, 2500 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1267,9 +1351,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          1250    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1250    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   1250    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
