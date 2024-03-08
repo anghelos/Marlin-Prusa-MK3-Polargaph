@@ -74,8 +74,9 @@
     const int x_axis_home_dir = TOOL_X_HOME_DIR(active_extruder);
 
     // Use a higher diagonal feedrate so axes move at homing speed
-    const float minfr = _MIN(homing_feedrate(X_AXIS), homing_feedrate(Y_AXIS)),
-                fr_mm_s = HYPOT(minfr, minfr);
+    // const float minfr = _MIN(homing_feedrate(X_AXIS), homing_feedrate(Y_AXIS)),
+    //             fr_mm_s = HYPOT(minfr, minfr);
+    const int fr_mm_s = 300;
 
     #if ENABLED(SENSORLESS_HOMING)
       sensorless_t stealth_states {
