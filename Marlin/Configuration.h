@@ -993,7 +993,7 @@
 // Enable for Polargraph Kinematics
 #define POLARGRAPH
 #if ENABLED(POLARGRAPH)
-  #define POLARGRAPH_MAX_BELT_LEN  1585 // (mm) Belt length at full extension. Override with M665 H.
+  #define POLARGRAPH_MAX_BELT_LEN  1630 // (mm) Belt length at full extension. Override with M665 H.
   #define DEFAULT_SEGMENTS_PER_SECOND 5   // Move segmentation based on duration
   #define PEN_UP_DOWN_MENU                // Add "Pen Up" and "Pen Down" to the MarlinUI menu
 #endif
@@ -1896,8 +1896,8 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 928
-#define Y_BED_SIZE 1550 // Cannot be an odd number
+#define X_BED_SIZE 932
+#define Y_BED_SIZE 1580 // Cannot be an odd number
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS (-X_BED_SIZE/2)
@@ -2330,7 +2330,7 @@
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
 #define MANUAL_X_HOME_POS 0 
-#define MANUAL_Y_HOME_POS -740.56
+#define MANUAL_Y_HOME_POS -771.97 //Y_MAX_POS - ( sqrt( sq(POLARGRAPH_MAX_BELT_LEN) - sq(X_BED_SIZE/2) ) )
 // #define MANUAL_Z_HOME_POS 0
 //#define MANUAL_I_HOME_POS 0
 //#define MANUAL_J_HOME_POS 0
