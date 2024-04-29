@@ -71,7 +71,7 @@
     current_position.set(0.0, 0.0);
     sync_plan_position();
 
-    const int x_axis_home_dir = TOOL_X_HOME_DIR(active_extruder);
+    // const int x_axis_home_dir = TOOL_X_HOME_DIR(active_extruder);
 
     // Use a higher diagonal feedrate so axes move at homing speed
     // const float minfr = _MIN(homing_feedrate(X_AXIS), homing_feedrate(Y_AXIS)),
@@ -90,7 +90,7 @@
       };
     #endif
 
-    do_blocking_move_to_xy(1 , 2 * max_length(Y_AXIS) * Y_HOME_DIR, fr_mm_s);
+    do_blocking_move_to_xy(0 , 2 * max_length(Y_AXIS) * Y_HOME_DIR, fr_mm_s);
 
     endstops.validate_homing_move();
 
