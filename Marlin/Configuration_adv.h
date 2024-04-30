@@ -4012,11 +4012,11 @@
 // Custom Menu: Main Menu
 #define CUSTOM_MENU_MAIN
 #if ENABLED(CUSTOM_MENU_MAIN)
-  #define CUSTOM_MENU_MAIN_TITLE "Dry Filament"
+  // #define CUSTOM_MENU_MAIN_TITLE "Dry Filament"
   #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 Finished Drying"
-  #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
+  // #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
-  #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
+  // #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
   #define MAIN_MENU_ITEM_1_DESC "Dry PLA - 2 hours"
   #define MAIN_MENU_ITEM_1_GCODE "M190 S60\nM75\nM117 Drying for 2 hours\nG4 S7200\nM140 S0\nM73 P100\nM77"
