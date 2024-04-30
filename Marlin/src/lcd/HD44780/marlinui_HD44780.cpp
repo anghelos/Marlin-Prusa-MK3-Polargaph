@@ -1125,7 +1125,7 @@ void MarlinUI::draw_status_screen() {
     //
     // Progress percent, Hotend 2, or Bed
     //
-    lcd_moveto(0, 2);
+    lcd_moveto(0, 1); //moved to line 2
     #if HOTENDS > 2
       _draw_heater_status(H_E2, LCD_STR_THERMOMETER[0], blink);
     #elif HAS_MULTI_HOTEND && HAS_HEATED_BED
