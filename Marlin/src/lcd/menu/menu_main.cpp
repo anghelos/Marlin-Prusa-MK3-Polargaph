@@ -117,8 +117,10 @@ void menu_configuration();
   }
 
   void menu_main() {
+    const bool busy = printingIsActive();
     START_MENU();
     BACK_ITEM(MSG_INFO_SCREEN);
+    
 
     #define HAS_CUSTOM_ITEM_MAIN(N) (defined(MAIN_MENU_ITEM_##N##_DESC) && defined(MAIN_MENU_ITEM_##N##_GCODE))
 
@@ -146,6 +148,10 @@ void menu_configuration();
         _CUSTOM_ITEM_MAIN(N); \
     }while(0)
 
+    if (busy) {
+        CUSTOM_ITEM_MAIN(3);
+    }
+    else{
     #if HAS_CUSTOM_ITEM_MAIN(1)
       CUSTOM_ITEM_MAIN(1);
     #endif
@@ -222,6 +228,7 @@ void menu_configuration();
       CUSTOM_ITEM_MAIN(25);
     #endif
     SUBMENU(MSG_TEMPERATURE, menu_temperature);
+    }
     END_MENU();
   }
 
