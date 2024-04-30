@@ -649,6 +649,10 @@ FORCE_INLINE void _draw_bed_status(const bool blink) {
   _draw_heater_status(H_BED, TERN0(HAS_LEVELING, blink && planner.leveling_active) ? '_' : LCD_STR_BEDTEMP[0], blink);
 }
 
+FORCE_INLINE void _draw_box_status(const bool blink) {
+  _draw_heater_status(H_E0, LCD_STR_THERMOMETER[0], blink);
+}
+
 #if HAS_CUTTER
 
   FORCE_INLINE void _draw_cutter_status() {
@@ -1086,15 +1090,15 @@ void MarlinUI::draw_status_screen() {
     //
     // Hotend 0 Temperature
     //
-    _draw_heater_status(H_E0, LCD_STR_THERMOMETER[0], blink);
+    _draw_heater_status(H_BED, LCD_STR_THERMOMETER[0], blink);
 
     //
     // Z Coordinate
     //
-    #if HAS_Z_AXIS
-      lcd_moveto(LCD_WIDTH - 9, 0);
-      _draw_axis_value(Z_AXIS, ftostr52sp(LOGICAL_Z_POSITION(current_position.z)), blink);
-    #endif
+    // #if HAS_Z_AXIS
+    //   lcd_moveto(LCD_WIDTH - 9, 0);
+    //   _draw_axis_value(Z_AXIS, ftostr52sp(LOGICAL_Z_POSITION(current_position.z)), blink);
+    // #endif
 
     #if HAS_LEVELING && (HAS_MULTI_HOTEND || !HAS_HEATED_BED)
       lcd_put_lchar(LCD_WIDTH - 1, 0, planner.leveling_active || blink ? '_' : ' ');
@@ -1102,19 +1106,19 @@ void MarlinUI::draw_status_screen() {
 
     // ========== Line 2 ==========
 
-    //
-    // Hotend 1 or Bed Temperature
-    //
-    lcd_moveto(0, 1);
-    #if HAS_MULTI_HOTEND
-      _draw_heater_status(H_E1, LCD_STR_THERMOMETER[0], blink);
-    #elif HAS_HEATED_BED
-      _draw_bed_status(blink);
-    #endif
+    // //
+    // // Hotend 1 or Bed Temperature
+    // //
+    // lcd_moveto(0, 1);
+    // #if HAS_MULTI_HOTEND
+    //   _draw_heater_status(H_E1, LCD_STR_THERMOMETER[0], blink);
+    // #elif HAS_HEATED_BED
+    //   _draw_bed_status(blink);
+    // #endif
 
-    lcd_put_lchar(LCD_WIDTH - 9, 1, LCD_STR_FEEDRATE[0]);
-    lcd_put_u8str(i16tostr3rj(feedrate_percentage));
-    lcd_put_u8str(F("%"));
+    // lcd_put_lchar(LCD_WIDTH - 9, 1, LCD_STR_FEEDRATE[0]);
+    // lcd_put_u8str(i16tostr3rj(feedrate_percentage));
+    // lcd_put_u8str(F("%"));
 
     // ========== Line 3 ==========
 

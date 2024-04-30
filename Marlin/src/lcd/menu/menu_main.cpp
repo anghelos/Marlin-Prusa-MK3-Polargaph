@@ -329,7 +329,7 @@ void menu_main() {
       SUBMENU(MSG_PREHEAT_CUSTOM, menu_preheat_only);
     #endif
 
-    SUBMENU(MSG_MOTION, menu_motion);
+    // SUBMENU(MSG_MOTION, menu_motion);
   }
 
   #if HAS_CUTTER
