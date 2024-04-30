@@ -159,7 +159,7 @@ void menu_configuration();
       CUSTOM_ITEM_MAIN(2);
     #endif
     #if HAS_CUSTOM_ITEM_MAIN(3)
-      CUSTOM_ITEM_MAIN(3);
+      // CUSTOM_ITEM_MAIN(3);
     #endif
     #if HAS_CUSTOM_ITEM_MAIN(4)
       CUSTOM_ITEM_MAIN(4);
