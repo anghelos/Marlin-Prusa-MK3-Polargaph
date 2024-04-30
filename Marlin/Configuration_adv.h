@@ -4022,8 +4022,8 @@
   #define MAIN_MENU_ITEM_1_GCODE "M190 S60\nM75\nM117 Drying for 2 hours\nG4 S7200\nM140 S0\nM73 P100\nM77"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
-  // #define MAIN_MENU_ITEM_2_DESC "Preheat for " PREHEAT_1_LABEL
-  // #define MAIN_MENU_ITEM_2_GCODE "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+  #define MAIN_MENU_ITEM_2_DESC "Dry PLA - 5 hours"
+  #define MAIN_MENU_ITEM_2_GCODE "M190 S60\nM75\nM117 Drying for 5 hours\nG4 S7200\nM73 P40\nG4 S7200\nM73 P 80\nG4 S3600\nM140 S0\nM73 P100\nM77"
   //#define MAIN_MENU_ITEM_2_CONFIRM
 
   //#define MAIN_MENU_ITEM_3_DESC "Preheat for " PREHEAT_2_LABEL
